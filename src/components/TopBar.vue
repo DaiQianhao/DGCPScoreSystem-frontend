@@ -1,25 +1,28 @@
 <template>
-    <v-card class="overflow-hidden">
-        <v-app-bar
-          absolute
-          color="white"
-          elevate-on-scroll
-        >
-            <v-toolbar-title>查分系统Pro</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-toolbar-items class="hidden-sm-and-down">
-                <v-btn text v-if="isLogged" @click="refreshScores">
-                    <div>
-                        <p class="login-btn-user-info">{{ username }}</p>
-                        <small class="login-btn-user-info">{{ uid }}</small>
-                    </div>
-                </v-btn>
-                <v-btn text @click="openLoginDialog" v-else>
-                    登录
-                </v-btn>
-            </v-toolbar-items>
-        </v-app-bar>
-    </v-card>
+    <v-app-bar
+        color="white"
+        elevate-on-scroll
+        app
+    >
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-toolbar-title>查分系统Pro</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items>
+            <v-btn text v-if="isLogged" @click="refreshScores">
+                <div>
+                    <!--
+                    <span class="login-btn-user-info">{{ username }}</span><br/>
+                    <small class="login-btn-user-info">{{ uid }}</small>
+                    -->
+                    <span class="login-btn-user-info">野兽先辈</span><br/>
+                    <small class="login-btn-user-info">1145141919</small>
+                </div>
+            </v-btn>
+            <v-btn text @click="openLoginDialog" v-else>
+                登录
+            </v-btn>
+        </v-toolbar-items>
+    </v-app-bar>
 </template>
 
 <script>
@@ -28,6 +31,14 @@ import { mapState } from 'vuex';
 export default {
     name: "TopBar",
     computed: {
+        drawer: {
+            get () {
+                return this.$store.state.login.drawer
+            },
+            set (value) {
+                this.$store.commit("updateNavigationState", value)
+            }
+        },
         ...mapState({
             isLogged: state => state.login.logged,
             username: state => state.login.username,

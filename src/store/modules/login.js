@@ -13,7 +13,8 @@ const state = () => ({
     errorBar: {
         show: false,
         text: ""
-    }
+    },
+    drawer: false
 })
 
 // getters
@@ -91,6 +92,9 @@ const mutations = {
     isLogging (state, payload){
         state.logging = payload
     },
+    updateNavigationState (state, payload) {
+        state.drawer = payload
+    }
 }
 
 export default {

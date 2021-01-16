@@ -1,28 +1,25 @@
 <template>
-    <v-expansion-panels>
-        <v-expansion-panel
-            v-for="(v,k,i) in selectedExam"
-            :key="i"
-        >
-            <v-expansion-panel-header>
-                <template v-slot:default="{ open }">
-                    <v-row no-gutters v-if="k != 'special'">
-                        <v-col cols="4">
-                            {{ k }}
-                        </v-col>
-                        <v-col cols="8">
-                            <v-fade-transition leave-absolute>
-                                <span v-if="!open"> 分数: {{ v.score }} </span>
-                            </v-fade-transition>
-                        </v-col>
-                    </v-row>
-                    <v-row no-gutters v-else>
-                        special
-                    </v-row>
-                </template>
-            </v-expansion-panel-header>
-        </v-expansion-panel>
-    </v-expansion-panels>
+    <v-container>
+        <v-row>
+            <v-col
+                v-for="(v,k,i) in selectedExam"
+                :key="i"
+                cols="12"
+                sm="4"
+                md="3"
+                lg="2"
+            >
+                <v-card>
+                    <v-card-title>{{ k }}</v-card-title>
+                    <v-card-text>
+                        分数: {{ v.score }}
+                        <br/>
+                        级排: {{ v.rank }}
+                    </v-card-text>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
@@ -33,8 +30,14 @@ export default {
 
     computed: {
         ...mapState({
-            selectedExam: state => state.exams.datas["2"]["scores"]
+            selectedExam: state => {
+                if (state.exams.selectedExam == "-1") {
+                    return {}
+                } else {
+                    return state.exams.datas[state.exams.selectedExam]["scores"]
+                }
+            }
         })
-    }
+    },
 }
 </script>

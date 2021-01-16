@@ -1,9 +1,12 @@
 <template>
     <div>
-        <top-bar></top-bar>
         <v-app>
+            <top-bar></top-bar>
             <login-dialog></login-dialog>
-            <score-show v-if="isExamDataNotNull"></score-show>
+            <navigation></navigation>
+            <v-main>
+                <score-show v-if="isExamDataNotNull"></score-show>
+            </v-main>
         </v-app>
     </div>
 </template>
@@ -15,6 +18,7 @@ import { mapState } from 'vuex';
 import TopBar from './components/TopBar.vue';
 import LoginDialog from './components/LoginDialog.vue'
 import ScoreShow from './components/ScoreShow.vue'
+import Navigation from './components/Navigation.vue'
 
 export default {
     name: 'App',
@@ -22,7 +26,8 @@ export default {
     components: {
         TopBar,
         LoginDialog,
-        ScoreShow
+        ScoreShow,
+        Navigation
     },
 
     computed: {

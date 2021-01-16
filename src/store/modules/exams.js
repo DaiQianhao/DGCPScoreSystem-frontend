@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const state = () => ({
-    datas: undefined
+    datas: undefined,
+    selectedExam: "-1"
 })
 
 const actions = {
@@ -15,6 +16,7 @@ const actions = {
                 var result = res.data
                 if (result.code == 0) {
                     commit("updateDatas", result["exams"])
+                    commit("updateNavigationState", true)
                 } else {
                     alert(result.msg)
                     if (result.code == 10) {
@@ -34,6 +36,9 @@ const actions = {
 const mutations = {
     updateDatas (state, payload) {
         state.datas = payload
+    },
+    changeSelectedExam (state, payload) {
+        state.selectedExam = payload
     }
 }
 
