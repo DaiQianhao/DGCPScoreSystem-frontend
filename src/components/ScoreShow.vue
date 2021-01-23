@@ -9,12 +9,20 @@
                 md="3"
                 lg="2"
             >
-                <v-card>
+                <v-card v-if="k != 'special'">
                     <v-card-title>{{ k }}</v-card-title>
                     <v-card-text>
                         分数: {{ v.score }}
                         <br/>
                         级排: {{ v.rank }}
+                    </v-card-text>
+                </v-card>
+                <v-card v-else>
+                    <v-card-title>特殊</v-card-title>
+                    <v-card-text>
+                        总数: {{ v.total }}
+                        <br/>
+                        级排: {{ v.grade_rank }}
                     </v-card-text>
                 </v-card>
             </v-col>

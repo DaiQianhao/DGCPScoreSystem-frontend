@@ -10,12 +10,12 @@
         <v-toolbar-items>
             <v-btn text v-if="isLogged" @click="refreshScores">
                 <div>
-                    <!--
                     <span class="login-btn-user-info">{{ username }}</span><br/>
                     <small class="login-btn-user-info">{{ uid }}</small>
-                    -->
+                    <!--
                     <span class="login-btn-user-info">野兽先辈</span><br/>
                     <small class="login-btn-user-info">1145141919</small>
+                    -->
                 </div>
             </v-btn>
             <v-btn text @click="openLoginDialog" v-else>

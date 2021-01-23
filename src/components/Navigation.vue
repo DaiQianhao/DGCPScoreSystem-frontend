@@ -1,9 +1,6 @@
 <template>
     <v-navigation-drawer app v-model="drawer">
-        <v-list
-            v-for="(id,name,i) in exams"
-            :key="i"
-        >
+        <v-list>
             <v-list-item>
                 <v-list-item-content>
                     <v-list-item-title class="title">
@@ -13,7 +10,10 @@
             </v-list-item>
             <v-divider></v-divider>
             <v-list-item-group mandatory>
-                <v-list-item @click="changeSelectedExam(id)">
+                <v-list-item
+                v-for="(id,name,i) in exams"
+                :key="i"
+                @click="changeSelectedExam(id)">
                     <v-list-item-title>
                         {{ name }}
                     </v-list-item-title>
