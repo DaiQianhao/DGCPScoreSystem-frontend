@@ -9,16 +9,28 @@
                 </v-list-item-content>
             </v-list-item>
             <v-divider></v-divider>
-            <v-list-item-group mandatory>
+            <v-list-item-group mandatory v-if="Object.keys(exams).length != 0">
                 <v-list-item
-                v-for="(id,name,i) in exams"
-                :key="i"
-                @click="changeSelectedExam(id)">
-                    <v-list-item-title>
-                        {{ name }}
-                    </v-list-item-title>
+                    two-line
+                    v-for="(value,id,i) in exams"
+                    :key="i"
+                    @click="changeSelectedExam(id)"
+                >
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            {{ value.name }}
+                        </v-list-item-title>
+                        <v-list-item-subtitle>
+                            缺失: {{ value.missing_number }} 人
+                        </v-list-item-subtitle>
+                    </v-list-item-content>
                 </v-list-item>
             </v-list-item-group>
+            <v-list-item v-else>
+                <v-list-item-title>
+                    请先登录
+                </v-list-item-title>
+            </v-list-item>
         </v-list>
     </v-navigation-drawer>
 </template>
@@ -50,7 +62,7 @@ export default {
                 var result = {}
                 if (state.exams.datas != undefined) {
                     Object.keys(state.exams.datas).reverse().forEach(id => {
-                        result[state.exams.datas[id]["examinfo"]["name"]] = id
+                        result[id] = state.exams.datas[id]["examinfo"]
                     });
                 }
                 return result

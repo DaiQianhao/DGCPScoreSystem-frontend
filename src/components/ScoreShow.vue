@@ -20,7 +20,7 @@
                 <v-card v-else>
                     <v-card-title>特殊</v-card-title>
                     <v-card-text>
-                        总数: {{ v.total }}
+                        总分: {{ v.total }}
                         <br/>
                         级排: {{ v.grade_rank }}
                     </v-card-text>
