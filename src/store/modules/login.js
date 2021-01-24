@@ -26,7 +26,7 @@ const actions = {
     login ({ dispatch, commit }, payload) {
         axios({
             method: 'post',
-            url:'http://127.0.0.1:44444/api/login',
+            url:'http://scoresystemapi.dogdie.cn:10124/api/login',
             data: {"uid": payload.uid, "password": new MD5().update(payload.password).digest('hex')}
         })
         .then(res => {

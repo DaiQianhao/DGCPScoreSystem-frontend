@@ -9,7 +9,7 @@ const actions = {
     getScores ({ commit }, payload) {
         axios({
             method: 'GET',
-            url:'http://127.0.0.1:44444/api/getScore?token=' + payload,
+            url:'http://scoresystemapi.dogdie.cn:10124/api/getScore?token=' + payload,
         })
         .then(res => {
             if (res.status == 200) {
